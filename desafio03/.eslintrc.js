@@ -4,22 +4,27 @@ module.exports = {
     node: true,
   },
   extends: [
-    'airbnb-base', 'prettier'
+    'airbnb','airbnb-base', 'prettier',
   ],
-  plugins: ['prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  plugins: [
+    'react', 'prettier'
+  ],
   rules: {
-    "prettier/prettier": "error",
-    "class-methods-use-this": "off",
-    "no-param-reassign": "off",
-    "camelcase": "off",
-    "no-unused-vars": ["error", {"argsIgnorePattern": "next"}],
+    "prettier/prettier": "error", //prettier identifica e retorna erro no eslint
+    "class-methods-use-this": "off", //permite classes não usar o this
+    "no-param-reassign": "off", //permite receber e alterar parametros
+    "camelcase": "off", //permite utilizar _ no nome de variáveis
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
   },
 };
