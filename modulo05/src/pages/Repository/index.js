@@ -7,14 +7,6 @@ import api from '../../services/api';
 import { Loading, Owner, IssueList } from './styles';
 
 export default class Repository extends Component {
-  static propTypes = {
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        repository: PropTypes.string,
-      }),
-    }).isRequired,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -80,3 +72,11 @@ export default class Repository extends Component {
     );
   }
 }
+
+Repository.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      repository: PropTypes.string,
+    }),
+  }).isRequired,
+};
