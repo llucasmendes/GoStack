@@ -1,5 +1,7 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+
+import './config/ReactotronConfig';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,10 +17,12 @@ const styles = StyleSheet.create({
   },
 });
 
+console.tron.log('Hello');
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Bem vindo!</Text>
+      <Text style={styles.welcome}>I Love react!</Text>
     </View>
   );
 }
