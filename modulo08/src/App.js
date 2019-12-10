@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 function App() {
-  return <h1>Hello World</h1>;
+  const [tech, setTech] = useState([]);
+  const [newTech, setNewTech] = useState('');
+
+  const handleAdd = useCallback(() => {
+    setTech([...tech, newTech]);
+    setNewTech('');
+  }, [newTech, tech]);
+
+  useEffect(() => {
+    const storage = localStorage.getItem('tech');
+
+    if (storage) {
+      setTech(JSON.parse(storage));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tech', JSON.stringify(tech));
+  }, [tech]);
+
+  const techSize = useMemo(() => tech.length, [tech]);
+
+  return (
+    <>
+      <ul>
+        {tech.map(t => (
+          <li key={t}>{t}</li>
+        ))}
+      </ul>
+      <strong>Você têm {techSize} tecnologias</strong> <br />
+      <input value={newTech} onChange={e => setNewTech(e.target.value)} />
+      <button type="button" onClick={handleAdd}>
+        Adicionar
+      </button>
+    </>
+  );
 }
 
 export default App;
