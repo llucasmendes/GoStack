@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
+
 import logo from '~/assets/logo.png';
 
 import Bacground from '~/components/Bacground';
@@ -14,7 +15,8 @@ import {
   SingLinkText,
 } from './styles';
 
-export default function SignIn({ navigation }) {
+export default function SignUp({ navigation }) {
+  const emaildRef = useRef();
   const passwordRef = useRef();
 
   function handleSubmit() {}
@@ -26,11 +28,20 @@ export default function SignIn({ navigation }) {
 
         <Form>
           <FormInput
+            icon="person-outline"
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="Nome Completo"
+            returnKeyType="next"
+            onSubmitEditing={() => emaildRef.current.focus()}
+          />
+          <FormInput
             icon="mail-outline"
             keyboardType="email-address"
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Digite seu e-mail"
+            ref={emaildRef}
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
           />
@@ -42,16 +53,16 @@ export default function SignIn({ navigation }) {
             returnKeyType="send"
             onSubmitEditing={handleSubmit}
           />
-          <SubmitButton onPress={() => {}}>Acessar</SubmitButton>
+          <SubmitButton onPress={handleSubmit}>Cadastrar</SubmitButton>
         </Form>
-        <SignLink onPress={() => navigation.navigate('SignUp')}>
-          <SingLinkText>Criar Conta Gratuita</SingLinkText>
+        <SignLink onPress={() => navigation.navigate('SignIn')}>
+          <SingLinkText>Já tenho conta</SingLinkText>
         </SignLink>
       </Container>
     </Bacground>
   );
 }
 
-SignIn.propTypes = {
+SignUp.propTypes = {
   navigation: PropTypes.func.isRequired,
 };

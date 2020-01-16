@@ -29,7 +29,7 @@ export default function SignIn() {
           label="sua senha"
           name="password"
           type="password"
-          placeholder="********"
+          placeholder="sua senha"
         />
 
         <button type="submit">Entrar no sistema</button>
